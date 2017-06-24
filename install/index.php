@@ -4,7 +4,7 @@
 header("Content-type: text/html;charset=utf-8");
 error_reporting(E_ERROR | E_PARSE);
 @set_time_limit(0);
-set_magic_quotes_runtime(0);
+//set_magic_quotes_runtime(0);
 if(PHP_VERSION < '4.1.0') {
 	$_GET         = &$HTTP_GET_VARS;
 	$_POST        = &$HTTP_POST_VARS;
@@ -242,7 +242,7 @@ switch ($action)
 			$fp=fopen("../config/config_db.php",'w+');
 			fputs($fp,$config);
 			fclose($fp);
-			$db = mysql_connect($db_host,$db_username,$db_pass) or die('连接数据库失败: ' . mysql_error());
+			$db = mysqli_connect($db_host,$db_username,$db_pass) or die('连接数据库失败: ' . mysql_error());
 			if(!@mysql_select_db($db_name)){
 				mysql_query("CREATE DATABASE $db_name ") or die('创建数据库失败'.mysql_error());
 			}
